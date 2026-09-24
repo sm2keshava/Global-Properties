@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VEGA Properties — Investment &amp; Rewards Console</title>
+  <!-- Inter = closest open substitute for SF Pro (used app-wide); real Apple devices still resolve SF via the system stack -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Ambient background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb--emerald"></span>
+    <span class="orb orb--gold"></span>
+    <span class="orb orb--teal"></span>
+  </div>
+
+  <div class="app">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar glass" id="sidebar">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18" />
+            <path d="M12 3c3 3 4.5 6 4.5 9a4.5 4.5 0 0 1-9 0c0-3 1.5-6 4.5-9Z" />
+            <path d="M12 12v9" />
+          </svg>
+        </div>
+        <div class="brand__text">
+          <span class="brand__name">VEGA Properties</span>
+          <span class="brand__sub">Invest · Earn · Grow</span>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <span class="nav__section">Overview</span>
+        <button class="nav__item is-active" data-view="dashboard">
+          <svg viewBox="0 0 24 24" class="nav__icon"><path d="M3 13h8V3H3v10Zm0 8h8v-6H3v6Zm10 0h8V11h-8v10Zm0-18v6h8V3h-8Z"/></svg>
+          <span>Dashboard</span>
+        </button>
+
+        <span class="nav__section">Invest</span>
+        <button class="nav__item" data-view="packages">
+          <svg viewBox="0 0 24 24" class="nav__icon"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Zm0 2.3L18.5 8 12 11.7 5.5 8 12 4.3ZM5 9.7l6 3.4v6.6l-6-3.3V9.7Zm8 10V13l6-3.3v6.6l-6 3.4Z"/></svg>
+          <span>Packages</span>
+        </button>
+        <button class="nav__item" data-view="farmland">
+          <svg viewBox="0 0 24 24" class="nav__icon"><path d="M4 20V8l8-5 8 5v12h-6v-6h-4v6H4Z"/></svg>
+          <span>My Properties</span>
+        </button>
+        <button class="nav__item" data-view="registrations">
+          <svg viewBox="0 0 24 24" class="nav__icon"><path d="M4 3h16v18l-4-3-4 3-4-3-4 3V3Zm4 5h8v2H8V8Zm0 4h8v2H8v-2Z"/></svg>
+          <span>Investments</span>
+        </button>
+
+        <span class="nav__section">Income</span>
+        <button class="nav__item" data-view="cashback">
+          <svg viewBox="0 0 24 24" class="nav__icon"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg>
+          <span>Income Plan</span>
+        </button>
+        <button class="nav__item" data-view="wallet">
+          <svg viewBox="0 0 24 24" class="nav__icon"><path d="M3 6a2 2 0 0 1 2-2h12v3h2a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Zm14 6h2v-2h-2a1 1 0 0 0 0 2Z"/></svg>
+          <span>Wallet</span>
+        </button>
+
+        <span class="nav__section">Network</span>
+        <button class="nav__item" data-view="team">
+          <svg viewBox="0 0 24 24" class="nav__icon"><path d="M12 3a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm-6 8a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm12 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM12 10c2.5 0 4 1.5 4 3.5V16H8v-2.5C8 11.5 9.5 10 12 10ZM4.5 17c1.6 0 2.5.8 2.5 2v2H2v-2c0-1.2.9-2 2.5-2Zm15 0c1.6 0 2.5.8 2.5 2v2h-5v-2c0-1.2.9-2 2.5-2Z"/></svg>
+          <span>Team &amp; Referrals</span>
+        </button>
+        <button class="nav__item" data-view="rewards">
+          <svg viewBox="0 0 24 24" class="nav__icon"><path d="M12 2 15 8l6 .9-4.5 4.3L17.7 20 12 16.9 6.3 20l1.2-6.8L3 8.9 9 8l3-6Z"/></svg>
+          <span>Rewards</span>
+        </button>
+
+        <span class="nav__section">Admin</span>
+        <button class="nav__item" data-view="investors">
+          <svg viewBox="0 0 24 24" class="nav__icon"><path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-8 1a3 3 0 1 0-3-3 3 3 0 0 0 3 3Zm0 2c-2.7 0-6 1.3-6 4v3h7v-3c0-1 .3-1.9.9-2.7A9 9 0 0 0 8 14Zm8 0c-3 0-8 1.5-8 4.5V21h16v-2.5C24 15.5 19 14 16 14Z"/></svg>
+          <span>Investors</span>
+        </button>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="upsell glass-inset">
+          <span class="upsell__badge">On-Prem</span>
+          <p class="upsell__title">Airgapped &amp; Secure</p>
+          <p class="upsell__text">All investor &amp; land data stays on your box.</p>
+        </div>
+        <div class="user">
+          <div class="user__avatar">KV</div>
+          <div class="user__meta">
+            <span class="user__name">Keshava V.</span>
+            <span class="user__role">Portfolio Admin</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============ MAIN ============ -->
+    <main class="main">
+      <!-- Topbar -->
+      <header class="topbar glass">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div class="topbar__title">
+          <h1 id="viewTitle">Dashboard</h1>
+          <p id="viewSub">Wallet, cashback, team &amp; weekly payout at a glance</p>
+        </div>
+        <div class="search">
+          <svg viewBox="0 0 24 24" class="search__icon"><path d="M21 21l-4.3-4.3M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"/></svg>
+          <input type="text" placeholder="Search members, properties…" aria-label="Search" />
+        </div>
+        <button class="wallet-chip" data-view-link="wallet" aria-label="Open wallet">
+          <svg viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h12v3h2a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Zm14 6h2v-2h-2a1 1 0 0 0 0 2Z"/></svg>
+          <span class="wallet-chip__meta">
+            <span class="wallet-chip__label">Wallet</span>
+            <span class="wallet-chip__amt">$3,240</span>
+          </span>
+        </button>
+        <button class="icon-btn" aria-label="Notifications">
+          <svg viewBox="0 0 24 24"><path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2v1h16v-1l-2-2ZM10 21a2 2 0 0 0 4 0"/></svg>
+          <span class="dot"></span>
+        </button>
+        <button class="btn btn--primary topbar__cta" data-view-link="packages">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
+          <span class="btn__label">Invest Now</span>
+        </button>
+      </header>
+
+      <!-- Scroll region -->
+      <div class="scroll">
+
+        <!-- ================= DASHBOARD ================= -->
+        <section class="view is-active" id="view-dashboard">
+          <div class="kpi-grid">
+            <article class="card kpi">
+              <div class="kpi__top">
+                <span class="kpi__label">Wallet Balance</span>
+                <span class="kpi__icon kpi__icon--emerald">
+                  <svg viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h12v3h2a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Zm14 6h2v-2h-2a1 1 0 0 0 0 2Z"/></svg>
+                </span>
+              </div>
+              <div class="kpi__value">$3,240</div>
+              <div class="kpi__trend is-up">
+                <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M21 7v6h-6"/></svg>
+                $2,916 <span>withdrawable (after 10%)</span>
+              </div>
+              <svg class="kpi__spark" style="color:var(--c-emerald)" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+                <path class="kpi__spark-area" d="M0,24 L14,22 L28,17 L42,19 L56,11 L70,13 L84,7 L100,9 L100,30 L0,30 Z"/>
+                <polyline class="kpi__spark-line" points="0,24 14,22 28,17 42,19 56,11 70,13 84,7 100,9"/>
+              </svg>
+            </article>
+
+            <article class="card kpi">
+              <div class="kpi__top">
+                <span class="kpi__label">Total Cashback Earned</span>
+                <span class="kpi__icon kpi__icon--gold">
+                  <svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </span>
+              </div>
+              <div class="kpi__value">$8,450</div>
+              <div class="kpi__trend is-up">
+                <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M21 7v6h-6"/></svg>
+                +$168 <span>this week · week 47 / 200</span>
+              </div>
+              <svg class="kpi__spark" style="color:var(--c-gold-deep)" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+                <path class="kpi__spark-area" d="M0,22 L14,18 L28,20 L42,12 L56,15 L70,8 L84,11 L100,5 L100,30 L0,30 Z"/>
+                <polyline class="kpi__spark-line" points="0,22 14,18 28,20 42,12 56,15 70,8 84,11 100,5"/>
+              </svg>
+            </article>
+
+            <article class="card kpi">
+              <div class="kpi__top">
+                <span class="kpi__label">Team Members</span>
+                <span class="kpi__icon kpi__icon--teal">
+                  <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4ZM8 14c-3 0-8 1.5-8 4.5V21h16v-2.5C16 15.5 11 14 8 14Z"/></svg>
+                </span>
+              </div>
+              <div class="kpi__value">42</div>
+              <div class="kpi__trend is-up">
+                <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M21 7v6h-6"/></svg>
+                +6 <span>new this week · 5 direct</span>
+              </div>
+              <svg class="kpi__spark" style="color:var(--c-teal)" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+                <path class="kpi__spark-area" d="M0,20 L14,21 L28,16 L42,18 L56,13 L70,15 L84,10 L100,12 L100,30 L0,30 Z"/>
+                <polyline class="kpi__spark-line" points="0,20 14,21 28,16 42,18 56,13 70,15 84,10 100,12"/>
+              </svg>
+            </article>
+
+            <article class="card kpi">
+              <div class="kpi__top">
+                <span class="kpi__label">Active Principal</span>
+                <span class="kpi__icon kpi__icon--rose">
+                  <svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/></svg>
+                </span>
+              </div>
+              <div class="kpi__value">$12,000</div>
+              <div class="kpi__trend is-up">
+                <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+                Returns in 153 weeks <span>· Diamond plan</span>
+              </div>
+              <svg class="kpi__spark" style="color:var(--c-rose)" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+                <path class="kpi__spark-area" d="M0,26 L20,24 L40,22 L60,18 L80,13 L100,8 L100,30 L0,30 Z"/>
+                <polyline class="kpi__spark-line" points="0,26 20,24 40,22 60,18 80,13 100,8"/>
+              </svg>
+            </article>
+          </div>
+
+          <!-- Weekly payout banner -->
+          <article class="card payout-banner">
+            <div class="payout-banner__l">
+              <span class="payout-banner__ic">
+                <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+              </span>
+              <div>
+                <h2 class="card__title">Weekly payout cycle</h2>
+                <p class="card__sub">Sunday cutoff · paid Monday 10:00 AM – 4:00 PM</p>
+              </div>
+            </div>
+            <div class="payout-banner__count" id="payoutCountdown">
+              <div class="cd"><b id="cdD">02</b><span>days</span></div>
+              <div class="cd"><b id="cdH">14</b><span>hrs</span></div>
+              <div class="cd"><b id="cdM">30</b><span>min</span></div>
+            </div>
+            <div class="payout-banner__r">
+              <span class="payout-banner__amt">$168.40</span>
+              <span class="payout-banner__lbl">pending this cycle</span>
+            </div>
+          </article>
+
+          <div class="grid-2">
+            <!-- Income mix -->
+            <article class="card">
+              <div class="card__head">
+                <div>
+                  <h2 class="card__title">Cashback &amp; Income Mix</h2>
+                  <p class="card__sub" id="mixSub">Your earnings by source · individual</p>
+                </div>
+                <div class="seg" id="mixSeg">
+                  <button class="seg__btn is-active">Individual</button>
+                  <button class="seg__btn">Overall</button>
+                </div>
+              </div>
+              <div class="donut-wrap">
+                <div class="donut" style="--a:46; --b:30; --c:16; --d:8;">
+                  <div class="donut__hole">
+                    <span class="donut__num" id="mixTotal">$8,450</span>
+                    <span class="donut__cap">earned</span>
+                  </div>
+                </div>
+                <ul class="legend">
+                  <li><span class="legend__dot" style="background:var(--c-emerald)"></span>Daily cashback (1%) <b>46%</b></li>
+                  <li><span class="legend__dot" style="background:var(--c-gold)"></span>Level income <b>30%</b></li>
+                  <li><span class="legend__dot" style="background:var(--c-teal)"></span>Direct referral (2:1) <b>16%</b></li>
+                  <li><span class="legend__dot" style="background:var(--c-rose)"></span>Rewards &amp; bonus <b>8%</b></li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Weekly income -->
+            <article class="card">
+              <div class="card__head">
+                <div>
+                  <h2 class="card__title">Weekly Income</h2>
+                  <p class="card__sub">Payout per cycle (USD) · divided over 30 days</p>
+                </div>
+                <span class="pill pill--up">▲ 8.2%</span>
+              </div>
+              <div class="bars">
+                <div class="bar" style="--h:44%"><span></span><em>W41</em></div>
+                <div class="bar" style="--h:52%"><span></span><em>W42</em></div>
+                <div class="bar" style="--h:48%"><span></span><em>W43</em></div>
+                <div class="bar" style="--h:66%"><span></span><em>W44</em></div>
+                <div class="bar" style="--h:61%"><span></span><em>W45</em></div>
+                <div class="bar" style="--h:72%"><span></span><em>W46</em></div>
+                <div class="bar is-peak" style="--h:84%"><span></span><em>W47</em></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="grid-2">
+            <!-- Principal return progress -->
+            <article class="card">
+              <div class="card__head">
+                <div>
+                  <h2 class="card__title">Principal Return</h2>
+                  <p class="card__sub">1% cashback for 200 weeks · principal back after 200 weeks</p>
+                </div>
+                <span class="pill">Week 47 / 200</span>
+              </div>
+              <div class="progress-block">
+                <div class="progress-row">
+                  <span>Cashback paid to date</span>
+                  <b>$3,948 <small>/ $16,800</small></b>
+                </div>
+                <div class="progress"><span style="width:23.5%"></span></div>
+                <div class="progress-legend">
+                  <div><span class="dotk dotk--emerald"></span>153 weeks remaining</div>
+                  <div><span class="dotk dotk--gold"></span>Principal $12,000 returns wk 200</div>
+                </div>
+                <div class="note-line">
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 15h-2v-6h2Zm0-8h-2V7h2Z"/></svg>
+                  Surety must be cancelled 150 weeks after payment.
+                </div>
+              </div>
+            </article>
+
+            <!-- Level income status -->
+            <article class="card">
+              <div class="card__head">
+                <div>
+                  <h2 class="card__title">Level Income Status</h2>
+                  <p class="card__sub">Unlock levels by self &amp; team bookings</p>
+                </div>
+                <button class="btn btn--ghost btn--sm" data-view-link="cashback">View plan</button>
+              </div>
+              <ul class="lvl-status">
+                <li class="is-unlocked"><span class="lvl-status__b tier tier--1">L1</span><div class="lvl-status__body"><b>3% · No conditions</b><span>Unlocked</span></div><span class="lvl-status__chk">✓</span></li>
+                <li class="is-unlocked"><span class="lvl-status__b tier tier--2">L2</span><div class="lvl-status__body"><b>2% · Self 2 / Team 5</b><span>Self 4 · Team 12</span></div><span class="lvl-status__chk">✓</span></li>
+                <li class="is-unlocked"><span class="lvl-status__b tier tier--3">L3</span><div class="lvl-status__body"><b>1% · Self 3 / Team 10</b><span>Self 4 · Team 12</span></div><span class="lvl-status__chk">✓</span></li>
+                <li><span class="lvl-status__b tier tier--4">L4</span><div class="lvl-status__body"><b>0.5% · Self 4 / Team 15</b><span>Need 3 more team</span></div><span class="lvl-status__lock">Locked</span></li>
+                <li><span class="lvl-status__b tier tier--5">L5</span><div class="lvl-status__body"><b>0.5% · Self 5 / Team 20</b><span>Need 1 self · 8 team</span></div><span class="lvl-status__lock">Locked</span></li>
+              </ul>
+            </article>
+          </div>
+
+          <!-- Weekly challenge banner -->
+          <article class="card challenge-banner">
+            <div class="challenge-banner__l">
+              <span class="challenge-banner__ic">
+                <svg viewBox="0 0 24 24"><path d="M12 2 15 8l6 .9-4.5 4.3L17.7 20 12 16.9 6.3 20l1.2-6.8L3 8.9 9 8l3-6Z"/></svg>
+              </span>
+              <div>
+                <span class="challenge-banner__tag">Weekly Challenge · Mon → Sun</span>
+                <h2 class="card__title">Add 3 direct referrals to unlock a $50 bonus</h2>
+                <p class="card__sub">2 of 3 done · resets Sunday 11:59 PM</p>
+              </div>
+            </div>
+            <div class="challenge-banner__r">
+              <div class="ring" style="--p:66"><b>2/3</b></div>
+              <button class="btn btn--primary" data-open-modal="invite">Invite &amp; win</button>
+            </div>
+          </article>
+
+          <!-- Weekly new members -->
+          <article class="card">
+            <div class="card__head">
+              <div>
+                <h2 class="card__title">New Members This Week</h2>
+                <p class="card__sub">Joined via your network · Mon → Sun</p>
+              </div>
+              <button class="btn btn--ghost btn--sm" data-view-link="team">View team</button>
+            </div>
+            <ul class="feed">
+              <li class="feed__row">
+                <span class="mini-avatar">RK</span>
+                <div class="feed__body">
+                  <p><b>R. Kumar</b> joined on your <b>Level 1</b></p>
+                  <span>Gold package · $30,000 · Welcome bonus $100</span>
+                </div>
+                <span class="feed__time">2h ago</span>
+              </li>
+              <li class="feed__row">
+                <span class="mini-avatar">PS</span>
+                <div class="feed__body">
+                  <p><b>P. Sharma</b> joined under <b>R. Kumar</b> (L2)</p>
+                  <span>Silver package · $15,000 · 1N/2D trip earned</span>
+                </div>
+                <span class="feed__time">6h ago</span>
+              </li>
+              <li class="feed__row">
+                <span class="mini-avatar">AV</span>
+                <div class="feed__body">
+                  <p><b>A. Verma</b> joined on your <b>Level 1</b></p>
+                  <span>Diamond package · $45,000 · Welcome bonus $100</span>
+                </div>
+                <span class="feed__time">1d ago</span>
+              </li>
+              <li class="feed__row">
+                <span class="mini-avatar">MN</span>
+                <div class="feed__body">
+                  <p><b>M. Nair</b> joined under <b>A. Verma</b> (L2)</p>
+                  <span>Silver package · $15,000</span>
+                </div>
+                <span class="feed__time">2d ago</span>
+              </li>
+            </ul>
+          </article>
+        </section>
+
+        <!-- ================= FARMLAND REGISTRY ================= -->
+        <section class="view" id="view-farmland">
+          <div class="toolbar">
+            <div class="chips">
+              <button class="chip is-active">All Land</button>
+              <button class="chip">Irrigated</button>
+              <button class="chip">Orchards</button>
+              <button class="chip">Dryland</button>
+              <button class="chip">Pasture</button>
+            </div>
+            <button class="btn btn--primary" data-open-modal="farmland">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
+              Register Farmland
+            </button>
+          </div>
+
+          <div class="land-grid">
+            <!-- card 1 -->
+            <article class="card land">
+              <div class="land__header">
+                <span class="land__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 21v-8"/><path d="M12 13c-3.3 0-6-2.7-6-6 3.3 0 6 2.7 6 6Z"/><path d="M12 13c0-2.8 2.2-5 5-5 0 2.8-2.2 5-5 5Z"/></svg>
+                </span>
+                <div class="land__meta">
+                  <div class="land__head">
+                    <h3>Greenvale Parcel</h3>
+                    <span class="land__status is-registered">Registered</span>
+                  </div>
+                  <span class="land__id">#GP-1042 · <b>Irrigated Cropland</b></span>
+                </div>
+              </div>
+              <p class="land__loc"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.6 7-12A7 7 0 0 0 5 9c0 5.4 7 12 7 12Zm0-9a3 3 0 1 1 3-3 3 3 0 0 1-3 3Z"/></svg> Punjab Valley, Sector 4</p>
+              <div class="land__stats">
+                <div><span>Area</span><b>320 ac</b></div>
+                <div><span>Valuation</span><b>$1.85M</b></div>
+                <div><span>Soil</span><b>Grade A</b></div>
+              </div>
+              <div class="land__owner">
+                <div class="land__owner-l">
+                  <span class="mini-avatar">AO</span>
+                  <div>
+                    <span class="land__owner-label">Registered to</span>
+                    <b>A. Okonkwo</b>
+                  </div>
+                </div>
+                <span class="tier tier--4">Lvl 4</span>
+              </div>
+            </article>
+
+            <!-- card 2 -->
+            <article class="card land">
+              <div class="land__header">
+                <span class="land__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 21v-6"/><path d="M12 3a6 6 0 0 0-3.7 10.7 4.5 4.5 0 0 0 7.4 0A6 6 0 0 0 12 3Z"/></svg>
+                </span>
+                <div class="land__meta">
+                  <div class="land__head">
+                    <h3>Sunridge Grove</h3>
+                    <span class="land__status is-registered">Registered</span>
+                  </div>
+                  <span class="land__id">#SG-2210 · <b>Orchard</b></span>
+                </div>
+              </div>
+              <p class="land__loc"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.6 7-12A7 7 0 0 0 5 9c0 5.4 7 12 7 12Zm0-9a3 3 0 1 1 3-3 3 3 0 0 1-3 3Z"/></svg> Nashik Highlands</p>
+              <div class="land__stats">
+                <div><span>Area</span><b>148 ac</b></div>
+                <div><span>Valuation</span><b>$980K</b></div>
+                <div><span>Yield</span><b>Mango</b></div>
+              </div>
+              <div class="land__owner">
+                <div class="land__owner-l">
+                  <span class="mini-avatar">MA</span>
+                  <div>
+                    <span class="land__owner-label">Registered to</span>
+                    <b>M. Al-Rashid</b>
+                  </div>
+                </div>
+                <span class="tier tier--4">Lvl 4</span>
+              </div>
+            </article>
+
+            <!-- card 3 -->
+            <article class="card land">
+              <div class="land__header">
+                <span class="land__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 21V10"/><path d="M12 10c0-2.2 1.6-4 4-4 0 2.2-1.6 4-4 4Z"/><path d="M12 10c0-2.2-1.6-4-4-4 0 2.2 1.6 4 4 4Z"/><path d="M12 15c0-2 1.6-3.6 4-3.6 0 2-1.6 3.6-4 3.6Z"/><path d="M12 15c0-2-1.6-3.6-4-3.6 0 2 1.6 3.6 4 3.6Z"/></svg>
+                </span>
+                <div class="land__meta">
+                  <div class="land__head">
+                    <h3>Amber Fields</h3>
+                    <span class="land__status is-pending">Pending</span>
+                  </div>
+                  <span class="land__id">#AF-0781 · <b>Dryland Grain</b></span>
+                </div>
+              </div>
+              <p class="land__loc"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.6 7-12A7 7 0 0 0 5 9c0 5.4 7 12 7 12Zm0-9a3 3 0 1 1 3-3 3 3 0 0 1-3 3Z"/></svg> Saskatoon Plains</p>
+              <div class="land__stats">
+                <div><span>Area</span><b>540 ac</b></div>
+                <div><span>Valuation</span><b>$2.20M</b></div>
+                <div><span>Yield</span><b>Wheat</b></div>
+              </div>
+              <div class="land__owner">
+                <div class="land__owner-l">
+                  <span class="mini-avatar mini-avatar--empty">?</span>
+                  <div>
+                    <span class="land__owner-label">Awaiting</span>
+                    <b>Unassigned</b>
+                  </div>
+                </div>
+                <button class="btn btn--tiny">Assign</button>
+              </div>
+            </article>
+
+            <!-- card 4 -->
+            <article class="card land">
+              <div class="land__header">
+                <span class="land__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 21V9"/><path d="M5 21c1.4 0 2.4-2 2.4-5"/><path d="M9.4 21c.7-1 1-3 1-6"/><path d="M14.6 21c-.7-1-1-3-1-6"/><path d="M19 21c-1.4 0-2.4-2-2.4-5"/></svg>
+                </span>
+                <div class="land__meta">
+                  <div class="land__head">
+                    <h3>Willow Meadows</h3>
+                    <span class="land__status is-registered">Registered</span>
+                  </div>
+                  <span class="land__id">#WM-3390 · <b>Pasture</b></span>
+                </div>
+              </div>
+              <p class="land__loc"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.6 7-12A7 7 0 0 0 5 9c0 5.4 7 12 7 12Zm0-9a3 3 0 1 1 3-3 3 3 0 0 1-3 3Z"/></svg> Waikato Basin</p>
+              <div class="land__stats">
+                <div><span>Area</span><b>276 ac</b></div>
+                <div><span>Valuation</span><b>$1.12M</b></div>
+                <div><span>Use</span><b>Grazing</b></div>
+              </div>
+              <div class="land__owner">
+                <div class="land__owner-l">
+                  <span class="mini-avatar">LF</span>
+                  <div>
+                    <span class="land__owner-label">Registered to</span>
+                    <b>L. Fernandes</b>
+                  </div>
+                </div>
+                <span class="tier tier--2">Lvl 2</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================= INVESTORS ================= -->
+        <section class="view" id="view-investors">
+          <div class="toolbar">
+            <div class="chips">
+              <button class="chip is-active">All Investors</button>
+              <button class="chip">Level 5</button>
+              <button class="chip">Level 4</button>
+              <button class="chip">New</button>
+            </div>
+            <button class="btn btn--primary" data-open-modal="investor">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
+              Add Investor
+            </button>
+          </div>
+
+          <article class="card table-card">
+            <div class="table-scroll">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Investor</th>
+                    <th>Land Parcels</th>
+                    <th class="ta-r">Total Invested</th>
+                    <th class="ta-r">Portfolio Value</th>
+                    <th class="ta-r">ROI</th>
+                    <th class="ta-c">Cashback Tier</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="tcell-user"><span class="mini-avatar">MA</span><div><b>M. Al-Rashid</b><span>INV-0021</span></div></div>
+                    </td>
+                    <td><span class="parcel-count">3 parcels</span></td>
+                    <td class="ta-r mono">$4,120,000</td>
+                    <td class="ta-r mono">$4,690,000</td>
+                    <td class="ta-r pos">+13.8%</td>
+                    <td class="ta-c"><span class="tier tier--5">Level 5 · 8%</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="tcell-user"><span class="mini-avatar">AO</span><div><b>A. Okonkwo</b><span>INV-0044</span></div></div>
+                    </td>
+                    <td><span class="parcel-count">2 parcels</span></td>
+                    <td class="ta-r mono">$2,350,000</td>
+                    <td class="ta-r mono">$2,610,000</td>
+                    <td class="ta-r pos">+11.1%</td>
+                    <td class="ta-c"><span class="tier tier--4">Level 4 · 6.5%</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="tcell-user"><span class="mini-avatar">LF</span><div><b>L. Fernandes</b><span>INV-0102</span></div></div>
+                    </td>
+                    <td><span class="parcel-count">1 parcel</span></td>
+                    <td class="ta-r mono">$820,000</td>
+                    <td class="ta-r mono">$868,000</td>
+                    <td class="ta-r pos">+5.9%</td>
+                    <td class="ta-c"><span class="tier tier--2">Level 2 · 3%</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="tcell-user"><span class="mini-avatar">JT</span><div><b>J. Tanaka</b><span>INV-0119</span></div></div>
+                    </td>
+                    <td><span class="parcel-count">4 parcels</span></td>
+                    <td class="ta-r mono">$6,540,000</td>
+                    <td class="ta-r mono">$7,780,000</td>
+                    <td class="ta-r pos">+19.0%</td>
+                    <td class="ta-c"><span class="tier tier--5">Level 5 · 8%</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="tcell-user"><span class="mini-avatar">SN</span><div><b>S. Nwosu</b><span>INV-0140</span></div></div>
+                    </td>
+                    <td><span class="parcel-count">1 parcel</span></td>
+                    <td class="ta-r mono">$310,000</td>
+                    <td class="ta-r mono">$322,000</td>
+                    <td class="ta-r pos">+3.9%</td>
+                    <td class="ta-c"><span class="tier tier--1">Level 1 · 1.5%</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <!-- ================= INVESTMENTS (link land ↔ investor) ================= -->
+        <section class="view" id="view-registrations">
+          <div class="grid-2 grid-2--wide">
+            <article class="card">
+              <div class="card__head">
+                <div>
+                  <h2 class="card__title">Investment Ledger</h2>
+                  <p class="card__sub">Which investor holds which land, and how much</p>
+                </div>
+              </div>
+              <ul class="ledger">
+                <li class="ledger__row">
+                  <div class="ledger__link">
+                    <span class="mini-avatar">MA</span>
+                    <svg class="ledger__arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    <span class="ledger__land"><svg viewBox="0 0 24 24"><path d="M4 20V8l8-5 8 5v12h-6v-6h-4v6H4Z"/></svg></span>
+                  </div>
+                  <div class="ledger__body">
+                    <b>M. Al-Rashid → Sunridge Grove</b>
+                    <span>148 ac · Orchard · 100% ownership</span>
+                  </div>
+                  <div class="ledger__amt mono">$540,000</div>
+                </li>
+                <li class="ledger__row">
+                  <div class="ledger__link">
+                    <span class="mini-avatar">JT</span>
+                    <svg class="ledger__arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    <span class="ledger__land"><svg viewBox="0 0 24 24"><path d="M4 20V8l8-5 8 5v12h-6v-6h-4v6H4Z"/></svg></span>
+                  </div>
+                  <div class="ledger__body">
+                    <b>J. Tanaka → Amber Fields</b>
+                    <span>540 ac · Dryland Grain · 65% ownership</span>
+                  </div>
+                  <div class="ledger__amt mono">$1,430,000</div>
+                </li>
+                <li class="ledger__row">
+                  <div class="ledger__link">
+                    <span class="mini-avatar">AO</span>
+                    <svg class="ledger__arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    <span class="ledger__land"><svg viewBox="0 0 24 24"><path d="M4 20V8l8-5 8 5v12h-6v-6h-4v6H4Z"/></svg></span>
+                  </div>
+                  <div class="ledger__body">
+                    <b>A. Okonkwo → Greenvale Parcel</b>
+                    <span>320 ac · Irrigated Cropland · 100% ownership</span>
+                  </div>
+                  <div class="ledger__amt mono">$1,850,000</div>
+                </li>
+                <li class="ledger__row">
+                  <div class="ledger__link">
+                    <span class="mini-avatar">LF</span>
+                    <svg class="ledger__arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    <span class="ledger__land"><svg viewBox="0 0 24 24"><path d="M4 20V8l8-5 8 5v12h-6v-6h-4v6H4Z"/></svg></span>
+                  </div>
+                  <div class="ledger__body">
+                    <b>L. Fernandes → Willow Meadows</b>
+                    <span>276 ac · Pasture · 100% ownership</span>
+                  </div>
+                  <div class="ledger__amt mono">$820,000</div>
+                </li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <div class="card__head">
+                <div>
+                  <h2 class="card__title">New Investment</h2>
+                  <p class="card__sub">Register capital against a land parcel</p>
+                </div>
+              </div>
+              <form class="form" onsubmit="return false">
+                <label class="field">
+                  <span class="field__label">Investor</span>
+                  <div class="select">
+                    <select>
+                      <option>M. Al-Rashid — INV-0021</option>
+                      <option>A. Okonkwo — INV-0044</option>
+                      <option>L. Fernandes — INV-0102</option>
+                      <option>J. Tanaka — INV-0119</option>
+                    </select>
+                  </div>
+                </label>
+                <label class="field">
+                  <span class="field__label">Farmland Parcel</span>
+                  <div class="select">
+                    <select>
+                      <option>Amber Fields — #AF-0781 (available)</option>
+                      <option>Greenvale Parcel — #GP-1042</option>
+                      <option>Sunridge Grove — #SG-2210</option>
+                    </select>
+                  </div>
+                </label>
+                <div class="field-row">
+                  <label class="field">
+                    <span class="field__label">Investment Amount</span>
+                    <div class="input-money">
+                      <span>$</span>
+                      <input type="text" value="1,430,000" inputmode="numeric" />
+                    </div>
+                  </label>
+                  <label class="field field--sm">
+                    <span class="field__label">Ownership %</span>
+                    <input class="input" type="number" value="65" min="1" max="100" />
+                  </label>
+                </div>
+                <div class="callout">
+                  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 15h-2v-6h2Zm0-8h-2V7h2Z"/></svg>
+                  <p>This amount qualifies the investor for <b>Level 4 — 6.5% cashback</b>. Tier is recalculated automatically.</p>
+                </div>
+                <div class="form__actions">
+                  <button class="btn btn--ghost" type="reset">Clear</button>
+                  <button class="btn btn--primary" type="submit">Record Investment</button>
+                </div>
+              </form>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================= INCOME PLAN ================= -->
+        <section class="view" id="view-cashback">
+          <div class="cashback-head card">
+            <div>
+              <h2 class="card__title">Working Income Plan</h2>
+              <p class="card__sub">Daily cashback, direct referral &amp; 5-level income. Admins can edit the percentages.</p>
+            </div>
+            <div class="cashback-head__actions">
+              <label class="switch">
+                <input type="checkbox" checked />
+                <span class="switch__track"><span class="switch__thumb"></span></span>
+                <span class="switch__label">Plan active</span>
+              </label>
+              <button class="btn btn--ghost" id="resetCashback">Reset defaults</button>
+              <button class="btn btn--primary" id="saveCashback">Save configuration</button>
+            </div>
+          </div>
+
+          <!-- Plan highlights -->
+          <div class="grid-3">
+            <article class="card plan-hi">
+              <span class="plan-hi__ic plan-hi__ic--emerald"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+              <div class="plan-hi__pct"><input class="pct-input" type="number" value="1" step="0.1" min="0" max="100" aria-label="Daily cashback"><span class="pct-sign">%</span></div>
+              <h3>Daily Cashback</h3>
+              <p>Paid every day for <b>200 weeks</b>, then principal returns.</p>
+            </article>
+            <article class="card plan-hi">
+              <span class="plan-hi__ic plan-hi__ic--gold"><svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4ZM8 14c-3 0-8 1.5-8 4.5V21h16v-2.5C16 15.5 11 14 8 14Z"/></svg></span>
+              <div class="plan-hi__pct"><b class="plan-hi__ratio">2:1</b></div>
+              <h3>Direct Referral</h3>
+              <p>Instant referral income, included in the cashback day.</p>
+            </article>
+            <article class="card plan-hi">
+              <span class="plan-hi__ic plan-hi__ic--teal"><svg viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg></span>
+              <div class="plan-hi__pct"><b class="plan-hi__ratio">÷30</b></div>
+              <h3>Income Distribution</h3>
+              <p>Every user's income is divided across 30 calendar days.</p>
+            </article>
+          </div>
+
+          <div class="card__head" style="margin:4px 2px 0">
+            <div><h2 class="card__title">Level Income</h2><p class="card__sub">Percentage per level with self &amp; team booking conditions</p></div>
+          </div>
+
+          <div class="tier-grid" id="tierGrid">
+            <article class="card tier-card" data-level="1">
+              <div class="tier-card__top">
+                <span class="tier-badge tier--1">Level 1</span>
+                <span class="tier-card__name">Direct</span>
+              </div>
+              <div class="tier-card__pct">
+                <input class="pct-input" type="number" value="3" step="0.1" min="0" max="100" aria-label="Level 1 percentage" />
+                <span class="pct-sign">%</span>
+              </div>
+              <input class="range" type="range" min="0" max="5" step="0.1" value="3" />
+              <div class="tier-card__meta">
+                <span>Condition</span>
+                <b>No conditions</b>
+              </div>
+            </article>
+
+            <article class="card tier-card" data-level="2">
+              <div class="tier-card__top">
+                <span class="tier-badge tier--2">Level 2</span>
+                <span class="tier-card__name">Growth</span>
+              </div>
+              <div class="tier-card__pct">
+                <input class="pct-input" type="number" value="2" step="0.1" min="0" max="100" aria-label="Level 2 percentage" />
+                <span class="pct-sign">%</span>
+              </div>
+              <input class="range" type="range" min="0" max="5" step="0.1" value="2" />
+              <div class="tier-card__meta">
+                <span>Condition</span>
+                <b>Self 2 / Team 5</b>
+              </div>
+            </article>
+
+            <article class="card tier-card" data-level="3">
+              <div class="tier-card__top">
+                <span class="tier-badge tier--3">Level 3</span>
+                <span class="tier-card__name">Builder</span>
+              </div>
+              <div class="tier-card__pct">
+                <input class="pct-input" type="number" value="1" step="0.1" min="0" max="100" aria-label="Level 3 percentage" />
+                <span class="pct-sign">%</span>
+              </div>
+              <input class="range" type="range" min="0" max="5" step="0.1" value="1" />
+              <div class="tier-card__meta">
+                <span>Condition</span>
+                <b>Self 3 / Team 10</b>
+              </div>
+            </article>
+
+            <article class="card tier-card" data-level="4">
+              <div class="tier-card__top">
+                <span class="tier-badge tier--4">Level 4</span>
+                <span class="tier-card__name">Leader</span>
+              </div>
+              <div class="tier-card__pct">
+                <input class="pct-input" type="number" value="0.5" step="0.1" min="0" max="100" aria-label="Level 4 percentage" />
+                <span class="pct-sign">%</span>
+              </div>
+              <input class="range" type="range" min="0" max="5" step="0.1" value="0.5" />
+              <div class="tier-card__meta">
+                <span>Condition</span>
+                <b>Self 4 / Team 15</b>
+              </div>
+            </article>
+
+            <article class="card tier-card tier-card--top" data-level="5">
+              <span class="tier-card__crown">★ Top level</span>
+              <div class="tier-card__top">
+                <span class="tier-badge tier--5">Level 5</span>
+                <span class="tier-card__name">Director</span>
+              </div>
+              <div class="tier-card__pct">
+                <input class="pct-input" type="number" value="0.5" step="0.1" min="0" max="100" aria-label="Level 5 percentage" />
+                <span class="pct-sign">%</span>
+              </div>
+              <input class="range" type="range" min="0" max="5" step="0.1" value="0.5" />
+              <div class="tier-card__meta">
+                <span>Condition</span>
+                <b>Self 5 / Team 20</b>
+              </div>
+            </article>
+          </div>
+
+          <article class="card">
+            <div class="card__head">
+              <div>
+                <h2 class="card__title">Level Income Simulator</h2>
+                <p class="card__sub">Estimated monthly level income at current percentages</p>
+              </div>
+              <span class="pill" id="simTotal">Total ≈ $2.13M / yr</span>
+            </div>
+            <div class="sim" id="simBars">
+              <!-- bars rendered/updated by app.js -->
+            </div>
+          </article>
+        </section>
+
+        <!-- ================= PACKAGES ================= -->
+        <section class="view" id="view-packages">
+          <div class="info-strip">
+            <div class="info-strip__item"><span class="info-strip__ic">＄</span><div><b>Currency: USD</b><span>All plans in US Dollars</span></div></div>
+            <div class="info-strip__item"><span class="info-strip__ic">＋</span><div><b>Min. $1,000</b><span>In multiples of $1,000</span></div></div>
+            <div class="info-strip__item"><span class="info-strip__ic">★</span><div><b>$100 Joining Bonus</b><span>Credited on activation</span></div></div>
+            <div class="info-strip__item"><span class="info-strip__ic">✈</span><div><b>1N / 2D Trip</b><span>South India, on joining</span></div></div>
+          </div>
+
+          <div class="pkg-grid">
+            <article class="card pkg">
+              <div class="pkg__head"><span class="pkg__badge pkg__badge--silver">Silver</span><span class="pkg__from">from</span></div>
+              <div class="pkg__price">$15,000<span>+</span></div>
+              <p class="pkg__note">≈ 15L &amp; above</p>
+              <ul class="pkg__list">
+                <li>1% daily cashback · 200 weeks</li>
+                <li>Level 1–2 income eligible</li>
+                <li>$100 joining bonus</li>
+                <li>1N/2D South India trip</li>
+                <li>Principal back after 200 weeks</li>
+              </ul>
+              <button class="btn btn--ghost pkg__cta" data-open-modal="invest" data-pkg="Silver">Choose Silver</button>
+            </article>
+
+            <article class="card pkg pkg--featured">
+              <span class="pkg__ribbon">Popular</span>
+              <div class="pkg__head"><span class="pkg__badge pkg__badge--gold">Gold</span><span class="pkg__from">from</span></div>
+              <div class="pkg__price">$30,000<span>+</span></div>
+              <p class="pkg__note">≈ 30L &amp; above</p>
+              <ul class="pkg__list">
+                <li>1% daily cashback · 200 weeks</li>
+                <li>Level 1–4 income eligible</li>
+                <li>$100 joining bonus + rewards</li>
+                <li>1N/2D trip + weekly challenges</li>
+                <li>Priority Monday payout</li>
+              </ul>
+              <button class="btn btn--primary pkg__cta" data-open-modal="invest" data-pkg="Gold">Choose Gold</button>
+            </article>
+
+            <article class="card pkg">
+              <div class="pkg__head"><span class="pkg__badge pkg__badge--diamond">Diamond</span><span class="pkg__from">from</span></div>
+              <div class="pkg__price">$45,000<span>+</span></div>
+              <p class="pkg__note">≈ 45L &amp; above</p>
+              <ul class="pkg__list">
+                <li>1% daily cashback · 200 weeks</li>
+                <li>All 5 levels of income</li>
+                <li>$100 bonus + full reward ladder</li>
+                <li>1N/2D trip + iPhone eligibility</li>
+                <li>Dedicated relationship manager</li>
+              </ul>
+              <button class="btn btn--ghost pkg__cta" data-open-modal="invest" data-pkg="Diamond">Choose Diamond</button>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================= WALLET ================= -->
+        <section class="view" id="view-wallet">
+          <div class="grid-2 grid-2--wide">
+            <article class="card wallet-hero">
+              <div class="wallet-hero__top">
+                <div>
+                  <span class="card__sub">Available balance</span>
+                  <div class="wallet-hero__bal">$3,240.00</div>
+                </div>
+                <span class="pill pill--up">Withdrawable 90%</span>
+              </div>
+              <div class="wallet-hero__split">
+                <div><span>Withdrawable</span><b>$2,916.00</b></div>
+                <div><span>10% fee</span><b>−$324.00</b></div>
+                <div><span>In escrow</span><b>$168.40</b></div>
+              </div>
+              <div class="wallet-hero__actions">
+                <button class="btn btn--primary" data-open-modal="withdraw"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 3v14M6 11l6 6 6-6M5 21h14"/></svg> Withdraw</button>
+                <button class="btn btn--ghost" data-open-modal="p2p"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M7 8h10l-3-3M17 16H7l3 3"/></svg> P2P Transfer</button>
+                <button class="btn btn--ghost" data-open-modal="invest"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg> Add Funds</button>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card__head"><div><h2 class="card__title">Payout &amp; withdrawal</h2><p class="card__sub">Weekly cycle &amp; methods</p></div></div>
+              <ul class="wallet-rules">
+                <li><svg viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg><div><b>Sunday cutoff</b><span>Earnings locked for the cycle</span></div></li>
+                <li><svg viewBox="0 0 24 24"><path d="M8 2v3M16 2v3M3 8h18M5 5h14v16H5z"/></svg><div><b>Payout Monday</b><span>10:00 AM – 4:00 PM</span></div></li>
+                <li><svg viewBox="0 0 24 24"><path d="M2 7h20v5H2zM12 22V7"/></svg><div><b>10% fee</b><span>On withdrawal &amp; P2P</span></div></li>
+                <li><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 12h8"/></svg><div><b>Withdraw in INR or USD</b><span>USD via BEP-20 network</span></div></li>
+              </ul>
+            </article>
+          </div>
+
+          <article class="card table-card">
+            <div class="card__head" style="padding:8px 8px 0"><div><h2 class="card__title">Transactions</h2><p class="card__sub">Wallet credits, withdrawals &amp; transfers</p></div></div>
+            <div class="table-scroll">
+              <table class="table">
+                <thead><tr><th>Type</th><th>Reference</th><th class="ta-r">Amount</th><th class="ta-c">Method</th><th class="ta-r">Date</th><th class="ta-c">Status</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="txn txn--in">Cashback</span></td><td class="mono">CB-4471</td><td class="ta-r pos mono">+$168.40</td><td class="ta-c">Wallet</td><td class="ta-r">Mon, 09:12</td><td class="ta-c"><span class="badge-ok">Paid</span></td></tr>
+                  <tr><td><span class="txn txn--out">Withdrawal</span></td><td class="mono">WD-2210</td><td class="ta-r mono">−$500.00</td><td class="ta-c">USD · BEP-20</td><td class="ta-r">Mon, 10:40</td><td class="ta-c"><span class="badge-ok">Sent</span></td></tr>
+                  <tr><td><span class="txn txn--in">Direct referral</span></td><td class="mono">RF-0091</td><td class="ta-r pos mono">+$240.00</td><td class="ta-c">Wallet</td><td class="ta-r">Sun, 18:03</td><td class="ta-c"><span class="badge-ok">Paid</span></td></tr>
+                  <tr><td><span class="txn txn--p2p">P2P out</span></td><td class="mono">P2-3320</td><td class="ta-r mono">−$120.00</td><td class="ta-c">To INV-0102</td><td class="ta-r">Sat, 14:20</td><td class="ta-c"><span class="badge-ok">Done</span></td></tr>
+                  <tr><td><span class="txn txn--out">Withdrawal</span></td><td class="mono">WD-2188</td><td class="ta-r mono">−$300.00</td><td class="ta-c">INR</td><td class="ta-r">Prev Mon</td><td class="ta-c"><span class="badge-wait">Pending</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <!-- ================= TEAM & REFERRALS ================= -->
+        <section class="view" id="view-team">
+          <article class="card referral">
+            <div class="referral__l">
+              <h2 class="card__title">Invite &amp; earn</h2>
+              <p class="card__sub">Share your link — earn direct referral income (2:1) instantly.</p>
+              <div class="referral__link">
+                <input id="refLink" type="text" readonly value="https://vega.properties/join?ref=KV-3391" aria-label="Referral link" />
+                <button class="btn btn--ghost btn--sm" id="copyRef">Copy</button>
+              </div>
+              <div class="referral__actions">
+                <button class="btn btn--wa" id="shareWa"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5 14c-.3.8-1.5 1.4-2.3 1.3-1.3-.1-3.3-.9-5-2.8s-2.4-3.9-2.5-5.2c0-.8.5-2 1.3-2.3.3-.1.6-.1.8 0l.9 2c.1.2 0 .5-.1.6l-.5.6c.5 1 1.6 2.1 2.6 2.6l.6-.5c.2-.1.4-.2.6-.1l2 .9c.1.2.2.5.1.8Z"/></svg> Share on WhatsApp</button>
+                <button class="btn btn--primary" data-open-modal="invite">More options</button>
+              </div>
+            </div>
+            <div class="referral__qr" aria-hidden="true">
+              <div class="qr"></div>
+              <span>Scan to join</span>
+            </div>
+          </article>
+
+          <div class="kpi-grid kpi-grid--4">
+            <article class="card mini-kpi"><span class="mini-kpi__label">Direct referrals</span><b class="mini-kpi__val">5</b><span class="mini-kpi__sub pos">+2 this week</span></article>
+            <article class="card mini-kpi"><span class="mini-kpi__label">Total team</span><b class="mini-kpi__val">42</b><span class="mini-kpi__sub pos">+6 this week</span></article>
+            <article class="card mini-kpi"><span class="mini-kpi__label">Team business</span><b class="mini-kpi__val">$612K</b><span class="mini-kpi__sub">cumulative</span></article>
+            <article class="card mini-kpi"><span class="mini-kpi__label">Active levels</span><b class="mini-kpi__val">3 / 5</b><span class="mini-kpi__sub">L4 needs 3 team</span></article>
+          </div>
+
+          <div class="grid-2 grid-2--wide">
+            <article class="card">
+              <div class="card__head"><div><h2 class="card__title">Level breakdown</h2><p class="card__sub">Members &amp; business by depth</p></div></div>
+              <ul class="lvlbar">
+                <li><span class="tier tier--1">L1</span><div class="lvlbar__track"><span style="width:100%"></span></div><b>5</b><em>$180K</em></li>
+                <li><span class="tier tier--2">L2</span><div class="lvlbar__track"><span style="width:72%"></span></div><b>12</b><em>$210K</em></li>
+                <li><span class="tier tier--3">L3</span><div class="lvlbar__track"><span style="width:55%"></span></div><b>14</b><em>$120K</em></li>
+                <li><span class="tier tier--4">L4</span><div class="lvlbar__track"><span style="width:30%"></span></div><b>7</b><em>$70K</em></li>
+                <li><span class="tier tier--5">L5</span><div class="lvlbar__track"><span style="width:12%"></span></div><b>4</b><em>$32K</em></li>
+              </ul>
+            </article>
+
+            <article class="card table-card">
+              <div class="card__head" style="padding:8px 8px 0"><div><h2 class="card__title">Direct team</h2><p class="card__sub">Your level-1 referrals</p></div></div>
+              <div class="table-scroll">
+                <table class="table">
+                  <thead><tr><th>Member</th><th class="ta-c">Level</th><th class="ta-r">Package</th><th class="ta-c">Status</th></tr></thead>
+                  <tbody>
+                    <tr><td><div class="tcell-user"><span class="mini-avatar">RK</span><div><b>R. Kumar</b><span>VG-4402</span></div></div></td><td class="ta-c"><span class="tier tier--1">L1</span></td><td class="ta-r mono">$30,000</td><td class="ta-c"><span class="badge-ok">Active</span></td></tr>
+                    <tr><td><div class="tcell-user"><span class="mini-avatar">AV</span><div><b>A. Verma</b><span>VG-4418</span></div></div></td><td class="ta-c"><span class="tier tier--1">L1</span></td><td class="ta-r mono">$45,000</td><td class="ta-c"><span class="badge-ok">Active</span></td></tr>
+                    <tr><td><div class="tcell-user"><span class="mini-avatar">SD</span><div><b>S. Das</b><span>VG-4390</span></div></div></td><td class="ta-c"><span class="tier tier--1">L1</span></td><td class="ta-r mono">$15,000</td><td class="ta-c"><span class="badge-ok">Active</span></td></tr>
+                    <tr><td><div class="tcell-user"><span class="mini-avatar">HP</span><div><b>H. Patel</b><span>VG-4377</span></div></div></td><td class="ta-c"><span class="tier tier--1">L1</span></td><td class="ta-r mono">$15,000</td><td class="ta-c"><span class="badge-wait">Pending</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================= REWARDS ================= -->
+        <section class="view" id="view-rewards">
+          <div class="card__head" style="margin:2px 2px 0"><div><h2 class="card__title">Reward Ladder</h2><p class="card__sub">Achieve level targets to unlock rewards</p></div></div>
+          <div class="reward-grid">
+            <article class="card reward is-earned">
+              <div class="reward__top"><span class="tier tier--1">Level 1</span><span class="reward__state">Earned</span></div>
+              <span class="reward__ic">✈</span>
+              <h3>2N / 3D Trip</h3>
+              <p>Domestic — South India</p>
+            </article>
+            <article class="card reward is-earned">
+              <div class="reward__top"><span class="tier tier--2">Level 2</span><span class="reward__state">Earned</span></div>
+              <span class="reward__ic">▦</span>
+              <h3>Tablet</h3>
+              <p>Android tab on qualifying</p>
+            </article>
+            <article class="card reward is-progress">
+              <div class="reward__top"><span class="tier tier--3">Level 3</span><span class="reward__state">62%</span></div>
+              <span class="reward__ic">✈</span>
+              <h3>4N / 5D Trip</h3>
+              <p>International destination</p>
+              <div class="progress reward__bar"><span style="width:62%"></span></div>
+            </article>
+            <article class="card reward">
+              <div class="reward__top"><span class="tier tier--4">Level 4</span><span class="reward__state">Locked</span></div>
+              <span class="reward__ic">◆</span>
+              <h3>Gold · 5 grams</h3>
+              <p>Certified 24K coin</p>
+            </article>
+            <article class="card reward reward--top">
+              <span class="reward__crown">★ Grand</span>
+              <div class="reward__top"><span class="tier tier--5">Level 5</span><span class="reward__state">Locked</span></div>
+              <span class="reward__ic">📱</span>
+              <h3>iPhone</h3>
+              <p>Latest model</p>
+            </article>
+          </div>
+
+          <article class="card">
+            <div class="card__head"><div><h2 class="card__title">Weekly Challenges</h2><p class="card__sub">Monday → Sunday · resets every week</p></div><span class="pill">Resets in 2d 14h</span></div>
+            <ul class="chal-list">
+              <li><span class="chal-list__ic">①</span><div class="chal-list__body"><b>Add 3 direct referrals</b><span>Reward: $50 wallet bonus</span><div class="progress"><span style="width:66%"></span></div></div><span class="chal-list__x">2/3</span></li>
+              <li><span class="chal-list__ic">②</span><div class="chal-list__body"><b>Team adds $50,000 business</b><span>Reward: +0.25% cashback boost</span><div class="progress"><span style="width:48%"></span></div></div><span class="chal-list__x">$24K</span></li>
+              <li class="is-done"><span class="chal-list__ic">③</span><div class="chal-list__body"><b>Log in 5 days</b><span>Reward: 1 lucky-draw entry</span><div class="progress"><span style="width:100%"></span></div></div><span class="chal-list__x">✓</span></li>
+              <li><span class="chal-list__ic">④</span><div class="chal-list__body"><b>Reach $500 weekly income</b><span>Reward: Featured on leaderboard</span><div class="progress"><span style="width:34%"></span></div></div><span class="chal-list__x">$168</span></li>
+            </ul>
+          </article>
+        </section>
+
+      </div><!-- /scroll -->
+    </main>
+  </div>
+
+  <!-- ============ MODAL: Register Farmland ============ -->
+  <div class="modal" id="modal-farmland" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__panel glass" role="dialog" aria-modal="true" aria-labelledby="mf-title">
+      <div class="modal__head">
+        <h2 id="mf-title">Register Farmland</h2>
+        <button class="icon-btn" data-close-modal aria-label="Close">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <form class="form" onsubmit="return false">
+        <div class="field-row">
+          <label class="field">
+            <span class="field__label">Parcel name</span>
+            <input class="input" type="text" placeholder="e.g. Greenvale Parcel" />
+          </label>
+          <label class="field field--sm">
+            <span class="field__label">Parcel ID</span>
+            <input class="input" type="text" placeholder="#GP-1042" />
+          </label>
+        </div>
+        <label class="field">
+          <span class="field__label">Location</span>
+          <input class="input" type="text" placeholder="Region, sector or coordinates" />
+        </label>
+        <div class="field-row">
+          <label class="field field--sm">
+            <span class="field__label">Area (acres)</span>
+            <input class="input" type="number" placeholder="320" />
+          </label>
+          <label class="field field--sm">
+            <span class="field__label">Valuation</span>
+            <div class="input-money"><span>$</span><input type="text" placeholder="1,850,000" /></div>
+          </label>
+          <label class="field field--sm">
+            <span class="field__label">Land type</span>
+            <div class="select">
+              <select>
+                <option>Irrigated Cropland</option>
+                <option>Orchard / Grove</option>
+                <option>Dryland Grain</option>
+                <option>Pasture / Grazing</option>
+              </select>
+            </div>
+          </label>
+        </div>
+        <label class="field">
+          <span class="field__label">Register to investor</span>
+          <div class="select">
+            <select>
+              <option>— Leave unassigned —</option>
+              <option>M. Al-Rashid — INV-0021</option>
+              <option>A. Okonkwo — INV-0044</option>
+              <option>L. Fernandes — INV-0102</option>
+              <option>J. Tanaka — INV-0119</option>
+            </select>
+          </div>
+        </label>
+        <div class="form__actions">
+          <button class="btn btn--ghost" data-close-modal type="button">Cancel</button>
+          <button class="btn btn--primary" data-close-modal type="submit">Register Parcel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: Add Investor ============ -->
+  <div class="modal" id="modal-investor" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__panel glass" role="dialog" aria-modal="true" aria-labelledby="mi-title">
+      <div class="modal__head">
+        <h2 id="mi-title">Add Investor</h2>
+        <button class="icon-btn" data-close-modal aria-label="Close">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <form class="form" onsubmit="return false">
+        <div class="field-row">
+          <label class="field">
+            <span class="field__label">Full name</span>
+            <input class="input" type="text" placeholder="e.g. Maria Fernandes" />
+          </label>
+          <label class="field field--sm">
+            <span class="field__label">Investor ID</span>
+            <input class="input" type="text" placeholder="INV-0150" />
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span class="field__label">Email</span>
+            <input class="input" type="email" placeholder="investor@example.com" />
+          </label>
+          <label class="field field--sm">
+            <span class="field__label">Initial commitment</span>
+            <div class="input-money"><span>$</span><input type="text" placeholder="250,000" /></div>
+          </label>
+        </div>
+        <div class="form__actions">
+          <button class="btn btn--ghost" data-close-modal type="button">Cancel</button>
+          <button class="btn btn--primary" data-close-modal type="submit">Create Investor</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: Invest / Join ============ -->
+  <div class="modal" id="modal-invest" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__panel glass" role="dialog" aria-modal="true" aria-labelledby="iv-title">
+      <div class="modal__head">
+        <h2 id="iv-title">Invest &amp; join</h2>
+        <button class="icon-btn" data-close-modal aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <form class="form" onsubmit="return false">
+        <div class="field-row">
+          <label class="field">
+            <span class="field__label">Membership package</span>
+            <div class="select">
+              <select id="investPkg">
+                <option>Silver — $15,000+</option>
+                <option selected>Gold — $30,000+</option>
+                <option>Diamond — $45,000+</option>
+                <option>Custom — $1,000 multiples</option>
+              </select>
+            </div>
+          </label>
+          <label class="field field--sm">
+            <span class="field__label">Amount (USD)</span>
+            <div class="input-money"><span>$</span><input id="investAmt" type="text" value="30,000" inputmode="numeric" /></div>
+          </label>
+        </div>
+        <label class="field">
+          <span class="field__label">Referred by (optional)</span>
+          <input class="input" type="text" value="KV-3391" />
+        </label>
+        <div class="callout">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 15h-2v-6h2Zm0-8h-2V7h2Z"/></svg>
+          <p>Includes <b>$100 joining bonus</b>, 1N/2D South India trip, and 1% daily cashback for 200 weeks. Amount must be a multiple of $1,000.</p>
+        </div>
+        <div class="form__actions">
+          <button class="btn btn--ghost" data-close-modal type="button">Cancel</button>
+          <button class="btn btn--primary" id="confirmInvest" type="button">Confirm &amp; generate welcome letter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: Withdraw ============ -->
+  <div class="modal" id="modal-withdraw" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__panel glass" role="dialog" aria-modal="true" aria-labelledby="wd-title">
+      <div class="modal__head">
+        <h2 id="wd-title">Withdraw funds</h2>
+        <button class="icon-btn" data-close-modal aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <form class="form" onsubmit="return false">
+        <div class="field-row">
+          <label class="field">
+            <span class="field__label">Amount (USD)</span>
+            <div class="input-money"><span>$</span><input id="wdAmt" type="text" value="500" inputmode="numeric" /></div>
+          </label>
+          <label class="field field--sm">
+            <span class="field__label">Method</span>
+            <div class="select">
+              <select id="wdMethod">
+                <option>USD · BEP-20</option>
+                <option>INR · Bank transfer</option>
+              </select>
+            </div>
+          </label>
+        </div>
+        <label class="field">
+          <span class="field__label" id="wdDestLabel">Wallet address (BEP-20)</span>
+          <input class="input" type="text" placeholder="0x…" />
+        </label>
+        <div class="fee-box">
+          <div class="fee-row"><span>Requested</span><b id="wdReq">$500.00</b></div>
+          <div class="fee-row"><span>Platform fee (10%)</span><b id="wdFee">−$50.00</b></div>
+          <div class="fee-row fee-row--net"><span>You receive</span><b id="wdNet">$450.00</b></div>
+        </div>
+        <div class="callout">
+          <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+          <p>Requests before <b>Sunday cutoff</b> are paid <b>Monday, 10:00 AM – 4:00 PM</b>.</p>
+        </div>
+        <div class="form__actions">
+          <button class="btn btn--ghost" data-close-modal type="button">Cancel</button>
+          <button class="btn btn--primary" data-close-modal id="submitWithdraw" type="button">Request withdrawal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: P2P ============ -->
+  <div class="modal" id="modal-p2p" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__panel glass" role="dialog" aria-modal="true" aria-labelledby="p2-title">
+      <div class="modal__head">
+        <h2 id="p2-title">P2P transfer</h2>
+        <button class="icon-btn" data-close-modal aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <form class="form" onsubmit="return false">
+        <div class="field-row">
+          <label class="field"><span class="field__label">Recipient member ID</span><input class="input" type="text" placeholder="VG-0000" /></label>
+          <label class="field field--sm"><span class="field__label">Amount (USD)</span><div class="input-money"><span>$</span><input type="text" value="120" inputmode="numeric" /></div></label>
+        </div>
+        <div class="callout"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 15h-2v-6h2Zm0-8h-2V7h2Z"/></svg><p>A <b>10%</b> fee applies to P2P transfers. Recipient receives the net amount instantly.</p></div>
+        <div class="form__actions">
+          <button class="btn btn--ghost" data-close-modal type="button">Cancel</button>
+          <button class="btn btn--primary" data-close-modal type="button">Send transfer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: Invite ============ -->
+  <div class="modal" id="modal-invite" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__panel glass" role="dialog" aria-modal="true" aria-labelledby="in-title">
+      <div class="modal__head">
+        <h2 id="in-title">Invite referrals</h2>
+        <button class="icon-btn" data-close-modal aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="form">
+        <label class="field">
+          <span class="field__label">Your referral link</span>
+          <div class="referral__link"><input id="refLink2" type="text" readonly value="https://vega.properties/join?ref=KV-3391" /><button class="btn btn--ghost btn--sm" id="copyRef2">Copy</button></div>
+        </label>
+        <div class="share-grid">
+          <button class="share-btn share-btn--wa" id="shareWa2"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5 14c-.3.8-1.5 1.4-2.3 1.3-1.3-.1-3.3-.9-5-2.8s-2.4-3.9-2.5-5.2c0-.8.5-2 1.3-2.3.3-.1.6-.1.8 0l.9 2c.1.2 0 .5-.1.6l-.5.6c.5 1 1.6 2.1 2.6 2.6l.6-.5c.2-.1.4-.2.6-.1l2 .9c.1.2.2.5.1.8Z"/></svg>WhatsApp</button>
+          <button class="share-btn" id="shareTg"><svg viewBox="0 0 24 24"><path d="M22 4 2 12l6 2 2 6 3-4 5 4 4-16ZM10 14l8-6-6 7Z"/></svg>Telegram</button>
+          <button class="share-btn" id="shareMail"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2zM2 5l10 7 10-7"/></svg>Email</button>
+          <button class="share-btn" id="copyRef3"><svg viewBox="0 0 24 24"><path d="M9 9h11v11H9zM4 4h11v3H7v8H4z"/></svg>Copy link</button>
+        </div>
+        <div class="form__actions"><button class="btn btn--primary" data-close-modal type="button">Done</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: Welcome letter ============ -->
+  <div class="modal" id="modal-welcome" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__panel glass" role="dialog" aria-modal="true" aria-labelledby="wl-title">
+      <div class="modal__head">
+        <h2 id="wl-title">Welcome letter</h2>
+        <button class="icon-btn" data-close-modal aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="letter" id="welcomeLetter">
+        <div class="letter__head">
+          <span class="letter__logo">VEGA</span>
+          <span class="letter__tag">Properties · Welcome aboard</span>
+        </div>
+        <p class="letter__hi">Dear <b id="wlName">New Investor</b>,</p>
+        <p class="letter__p">Welcome to VEGA Properties. Your membership is now active. Below are your login credentials and plan summary — please keep them safe.</p>
+        <div class="letter__creds">
+          <div><span>User ID</span><b id="wlId">VG-4471</b></div>
+          <div><span>Password</span><b id="wlPass">Vega@4471</b></div>
+          <div><span>Package</span><b id="wlPkg">Gold</b></div>
+          <div><span>Investment</span><b id="wlAmt">$30,000</b></div>
+        </div>
+        <ul class="letter__list">
+          <li>$100 joining bonus credited to your wallet.</li>
+          <li>1% daily cashback for 200 weeks; principal returns after week 200.</li>
+          <li>1N / 2D South India trip voucher issued.</li>
+          <li>Weekly payout every Monday, 10:00 AM – 4:00 PM (Sunday cutoff).</li>
+        </ul>
+        <p class="letter__sign">Warm regards,<br/><b>Team VEGA Properties</b></p>
+      </div>
+      <div class="form__actions">
+        <button class="btn btn--ghost" onclick="window.print()" type="button">Print</button>
+        <button class="btn btn--primary" data-close-modal type="button">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
